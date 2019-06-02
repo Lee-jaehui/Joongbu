@@ -207,33 +207,36 @@ namespace JBU_PRJ1
                     Console.WriteLine("[메신저] 네이트온 설치X 확인");
                 }
             }
-            string Caheck = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile", "EnableFirewall", "").ToString();
-            if(Convert.ToInt32(Caheck) >= 1) Console.WriteLine("[OS] 방화벽 사용 중");
+            string Check = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile", "EnableFirewall", "").ToString();
+            if(Convert.ToInt32(Check) >= 1) Console.WriteLine("[OS] 방화벽 사용 중");
             try
             {
-                Caheck = Registry.GetValue(@"HKEY_CURRENT_USER\Control Panel\Desktop", "ScreenSaverIsSecure", "").ToString();
-                if (Convert.ToInt32(Caheck) !=1) Console.WriteLine("[화면보호기] 다시 시작할 때 로그인 화면 미체크 시 취약");
-                string Caheck2 = Registry.GetValue(@"HKEY_CURRENT_USER\Control Panel\Desktop", "ScreenSaveTimeOut", "").ToString();
-                if (Convert.ToInt32(Caheck2) < 300) Console.WriteLine("[화면보호기] 대기시간 최소 300초(5분)보다 작으면 취약");
+                Check = Registry.GetValue(@"HKEY_CURRENT_USER\Control Panel\Desktop", "ScreenSaverIsSecure", "").ToString();
+                if (Convert.ToInt32(Check) !=1) Console.WriteLine("[화면보호기] 다시 시작할 때 로그인 화면 미체크 시 취약");
+                string Check2 = Registry.GetValue(@"HKEY_CURRENT_USER\Control Panel\Desktop", "ScreenSaveTimeOut", "").ToString();
+                if (Convert.ToInt32(Check2) < 300) Console.WriteLine("[화면보호기] 대기시간 최소 300초(5분)보다 작으면 취약");
             }
             catch {
 
             }
             try
             {
-                Caheck = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoDriveTypeAutoRun", "").ToString();
-                if (Convert.ToInt32(Caheck) < 100) Console.WriteLine("[외부저장소] 자동 연결 100번(최대:FF(255)번) 보다 작으면 취약");
+                Check = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoDriveTypeAutoRun", "").ToString();
+                if (Convert.ToInt32(Check) < 100) Console.WriteLine("[외부저장소] 자동 연결 100번(최대:FF(255)번) 보다 작으면 취약");
             }
             catch
             {
                 Console.WriteLine("[외부저장소] 자동 연결 100번(최대:FF(255)번) 보다 작으면 취약 (현재 미설정)");
             }
-            Caheck = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Cache", "Persistent", "").ToString();
-            if (Convert.ToInt32(Caheck) != 0) Console.WriteLine("[인터넷 익스플로러] 캐시 파일 저장 일자 0이 아니면, 취약");
-            Caheck = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server", "fDenyTSConnections", "").ToString();
-            if (Convert.ToInt32(Caheck) != 1) Console.WriteLine("[원격 지원 서비스] 원격 지원 서비스 1이 아니면(사용하지 않는 것이 아니라면), 취약");
+            Check = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Cache", "Persistent", "").ToString();
+            if (Convert.ToInt32(Check) != 0) Console.WriteLine("[인터넷 익스플로러] 캐시 파일 저장 일자 0이 아니면, 취약");
+            Check = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server", "fDenyTSConnections", "").ToString();
+            if (Convert.ToInt32(Check) != 1) Console.WriteLine("[원격 지원 서비스] 원격 지원 서비스 1이 아니면(사용하지 않는 것이 아니라면), 취약");
+            Check = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\USBSTOR", "Start", "").ToString();
+            if (Convert.ToInt32(Check) == 4) Console.WriteLine("[USB 저장 장치] 연결 허용하지 않음 = 안전");
+            else if (Convert.ToInt32(Check) == 3) Console.WriteLine("[USB 저장 장치] 연결 허용함 = 취약");
 
-            //HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall{697E41EA-AEBE-4B5F-884E-87B5CD6C70AC}
+             //HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall{697E41EA-AEBE-4B5F-884E-87B5CD6C70AC}
             //HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall{EA77EC9A-C82F-4F80-8B7D-D32C09A9C25F}
             Console.ReadLine();
         }
