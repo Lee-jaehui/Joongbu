@@ -85,13 +85,8 @@ namespace JBU_PRJ1
             ServiceController sc = new ServiceController(name);
             if (sc.Status.ToString() == "Stopped")
             {
-                //Console.WriteLine("[서비스 On] " + name + " 중지 중");
                 global.rser_len += 1;
-            } else
-            {
-
-                //Console.WriteLine("[서비스 Off] " + name + " 구동 중");
-            }
+            } 
         }
 
         public static void Main()
