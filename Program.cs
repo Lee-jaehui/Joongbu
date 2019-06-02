@@ -211,28 +211,6 @@ namespace JBU_PRJ1
                     Console.WriteLine("[메신저] 네이트온 설치X 확인");
                 }
             }
-
-                      //      DirectoryInfo di2 = new DirectoryInfo("%ProgramFiles(x86)%\\SK Communications\\NATEON\\BIN");
-                      //    if (di2.Exists) Console.WriteLine("폴더존재64");
-                      /*"C:\Program Files (x86)\SK Communications\NATEON\BIN\NateOn.exe"
-                      //string folderPath = "%ProgramFiles%/SK Communications/NATEON/BIN";
-                      string folderPath = "C:\\";
-                      DirectoryInfo di = new DirectoryInfo(folderPath);
-                      if (di.Exists == true)
-                      {
-                          string folderPath2 = "%ProgramFiles(x86)%\\SK Communications\\NATEON\\BIN";
-                          DirectoryInfo di2 = new DirectoryInfo(folderPath2);
-                          Console.WriteLine(di.Exists);
-                          if (di2.Exists == true) Console.WriteLine("[메신저] 네이트온86 설치X 확인");
-                      }
-                      else
-                      {
-                          Console.WriteLine("[메신저] 네이트온86 설치 확인");
-                      }
-                      */
-
-
-
                 //HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall{697E41EA-AEBE-4B5F-884E-87B5CD6C70AC}
                 //HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall{EA77EC9A-C82F-4F80-8B7D-D32C09A9C25F}
 
