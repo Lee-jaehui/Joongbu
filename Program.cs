@@ -206,6 +206,9 @@ namespace JBU_PRJ1
                     Console.WriteLine("[메신저] 네이트온 설치X 확인");
                 }
             }
+            
+            string r4 = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile", "EnableFirewall", "").ToString();
+            if(Convert.ToInt32(r4) >= 1) Console.WriteLine("[OS] 방화벽 사용 중");
                 //HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall{697E41EA-AEBE-4B5F-884E-87B5CD6C70AC}
                 //HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall{EA77EC9A-C82F-4F80-8B7D-D32C09A9C25F}
 
