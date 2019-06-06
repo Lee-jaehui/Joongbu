@@ -236,8 +236,22 @@ namespace JBU_PRJ1
             if (Convert.ToInt32(Check) == 4) Console.WriteLine("[USB 저장 장치] 연결 허용하지 않음 = 안전");
             else if (Convert.ToInt32(Check) == 3) Console.WriteLine("[USB 저장 장치] 연결 허용함 = 취약");
 
-             //HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall{697E41EA-AEBE-4B5F-884E-87B5CD6C70AC}
-            //HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall{EA77EC9A-C82F-4F80-8B7D-D32C09A9C25F}
+            // Null Session 접근 제어 ㅁ Windows는 SMB와 NetBIOS 프로토콜을 기본으로 사용함으로써 시스템의 많은 정보를 외부에 유출 시킬 수 있습니다. 이것은 TCP/139,445번 포트를 사용함으로써 사용자 인증과정 없이 원격호스트에 접근할 수 있습니다. 
+            Check = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa", "restrictanonymous", "").ToString();
+            if (Convert.ToInt32(Check) == 1) Console.WriteLine("[NULL 세션] SMB와 NetBIOS 프로토콜 사용 안함 = 안전");
+            else if (Convert.ToInt32(Check) == 0) Console.WriteLine("[NULL 세션] SMB와 NetBIOS 프로토콜 사용함 = 취약");
+
+            // Autologon 비활성화
+            try
+            {
+                Check = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\WInlogon", "AutoAdminLogon", "").ToString();
+                if (Convert.ToInt32(Check) == 1) Console.WriteLine("[오토로그인] 활성화 = 취약");
+            }
+            catch
+            {
+                Console.WriteLine("[오토로그인] 항목 미설정 = 안전");
+            }
+            
             Console.ReadLine();
         }
     }
